@@ -18,5 +18,12 @@ class DatabaseSeeder extends Seeder
             InitialSeeder::class
         ]);
 
+        $this->call([
+            SampleSeeder::class
+        ]);
+
+        $this->call([
+            ResultSeeder::class
+        ]);
     }
 }
