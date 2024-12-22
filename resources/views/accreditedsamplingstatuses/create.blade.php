@@ -9,7 +9,7 @@
             <form id="createForm" action="{{route('accreditedsamplingstatuses.store')}}" method="POST">
                 @csrf
 
-                <div class="card border-primary col-md-4">
+                <div class="card flex shadow col-md-5 col-sm-10 col-xs-10 mx-4 my-2">
                     <div class="card-body">
 
                         <div class="form-group">

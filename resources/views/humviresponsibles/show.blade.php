@@ -6,7 +6,7 @@
         <h4>Részletek</h4>
     </x-slot>
 
-    <div class="card border-primary col-md-4">
+    <div class="card flex shadow col-md-5 col-sm-10 col-xs-10 mx-4 my-2">
         <div class="card-body">
 
             <dl class="row">

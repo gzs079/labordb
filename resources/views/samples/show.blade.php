@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="row">
-        <div class="card border-primary flex col-lg-5 col-md-5 col-sm-10 col-xs-10 mx-4 my-2">
+        <div class="card flex shadow col-md-5 col-sm-10 col-xs-10 mx-4 my-2">
             <div class="card-body">
                 <dl class="row">
                     <dt class = "col-4"><strong>Laborkód:</strong></dt> <dd class = "col-8"> {{ $item->sample_lab_id }}</dd>
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="card border-primary flex col-lg-5 col-md-5 col-sm-10 col-xs-10 mx-4 my-2">
+        <div class="card flex shadow col-md-5 col-sm-10 col-xs-10 mx-4 my-2">
             <div class="card-body">
             </div>
         </div>
