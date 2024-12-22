@@ -52,7 +52,28 @@ class ResultFactory extends Factory
             return ">" . $this->faker->numberBetween(500, 600);
         }
         elseif ($randomChoice<10) {
+            return ">" . "0." . $this->faker->numberBetween(10, 100);
+        }
+        elseif ($randomChoice<15) {
+            return ">" . "0," . $this->faker->numberBetween(10, 100);
+        }
+        elseif ($randomChoice<20) {
             return "<" . $this->faker->numberBetween(1, 10);
+        }
+        elseif ($randomChoice<25) {
+            return "<" . "1." . $this->faker->numberBetween(10, 100);
+        }
+        elseif ($randomChoice<30) {
+            return "<" . "1," . $this->faker->numberBetween(10, 100);
+        }
+        elseif ($randomChoice<35) {
+            return 0;
+        }
+        elseif ($randomChoice<55) {
+            return $this->faker->numberBetween(1, 10) . '.' . $this->faker->numberBetween(1, 100);
+        }
+        elseif ($randomChoice<75) {
+            return $this->faker->numberBetween(1, 10) . ',' . $this->faker->numberBetween(1, 100);
         }
         else {
             return $this->faker->numberBetween(10, 500);
@@ -61,6 +82,9 @@ class ResultFactory extends Factory
     }
 
     private function loq($value) {
+
+        $value = str_replace(',','.',$value);
+
         if (substr($value, 0, 1) === '<') {
             return (float) substr($value, 1);
         }
@@ -68,6 +92,9 @@ class ResultFactory extends Factory
     }
 
     private function maxrange($value) {
+
+        $value = str_replace(',','.',$value);
+
         if (substr($value, 0, 1) === '>') {
             return (float) substr($value, 1);
         }
@@ -75,6 +102,9 @@ class ResultFactory extends Factory
     }
 
     private function valueassigned($value) {
+
+        $value = str_replace(',','.',$value);
+
         if (substr($value, 0, 1) === '<') {
             return (float) substr($value, 1)/2.;
         }
@@ -82,7 +112,12 @@ class ResultFactory extends Factory
             return (float) substr($value, 1);
         }
         else {
-            is_numeric($value) ? (float) $value : null;
+            if (is_numeric($value)) {
+                return (float)$value;
+            }
+            else {
+                return null;
+            }
         }
     }
 
