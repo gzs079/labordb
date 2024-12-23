@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Humviresponsible;
+use App\Models\Sample;
 use Illuminate\Http\Request;
 
 class HumviResponsibleController extends Controller
@@ -111,7 +112,13 @@ class HumviResponsibleController extends Controller
      */
     public function destroy(Request $request, Humviresponsible $humviresponsible)
     {
+        $sampleExists = Sample::where('humviresponsible_id', $humviresponsible->id)->exists();
         $currentPage = $request->input('page', 1);
+
+        if ($sampleExists) {
+            return redirect()->route('humviresponsibles.index', ['page' => $currentPage])
+            ->with('danger', 'Sikertelen törlés! Rekorhoz tartozó idegen kulcs létezik a minta táblában.');
+        }
 
         $humviresponsible->delete();
 

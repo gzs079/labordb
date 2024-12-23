@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accreditedsamplingstatus;
+use App\Models\Sample;
 use Illuminate\Http\Request;
 
 class AccreditedSamplingStatusController extends Controller
@@ -103,7 +104,14 @@ class AccreditedSamplingStatusController extends Controller
      */
     public function destroy(Request $request, Accreditedsamplingstatus $accreditedsamplingstatus)
     {
+
+        $sampleExists = Sample::where('accreditedsamplingstatus_id', $accreditedsamplingstatus->id)->exists();
         $currentPage = $request->input('page', 1);
+
+        if ($sampleExists) {
+            return redirect()->route('accreditedsamplingstatuses.index', ['page' => $currentPage])
+            ->with('danger', 'Sikertelen törlés! Rekorhoz tartozó idegen kulcs létezik a minta táblában.');
+        }
 
         $accreditedsamplingstatus->delete();
 

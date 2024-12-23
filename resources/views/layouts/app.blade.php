@@ -91,6 +91,11 @@
                 align-items: center;
                 width: 100vw;
             }
+            .alert-danger {
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+            }
             input, textarea, select {
                 font-size: 14px;
             }
@@ -139,6 +144,11 @@
                     @if(session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
+                        </div>
+                    @endif
+                    @if(session('danger'))
+                        <div class="alert alert-danger">
+                            {{ session('danger') }}
                         </div>
                     @endif
                 </div>
