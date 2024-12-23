@@ -36,12 +36,10 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mt-3">
-                            <input type="submit" value="Létrehozás" class="btn btn-primary" />
-                            <a href="{{ route('humviresponsibles.index', ['page' => request()->input('page')]) }}" class="btn btn-secondary">
-                                Mégsem
-                            </a>
-                        </div>
+                        @include('partials._create-actions', [
+                            'controllerName' => 'humviresponsibles',
+                            'page' => request()->input('page')
+                            ])
 
                     </div>
                 </div>

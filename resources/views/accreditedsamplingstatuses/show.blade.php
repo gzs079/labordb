@@ -16,14 +16,11 @@
                 <dt class = "col-4"><strong>Utolsó módosítás:</strong></dt> <dd class = "col-8"> {{ $item->updated_at }}</dd>
             </dl>
 
-            <div class="form-group mt-3">
-                <a href="{{ route('accreditedsamplingstatuses.edit', [$item->id, 'page' => $currentPage]) }}" class="btn btn-warning">
-                    Szerkesztés
-                </a>
-                <a href="{{ route('accreditedsamplingstatuses.index', ['page' => $currentPage]) }}" class="btn btn-secondary">
-                    Vissza
-                </a>
-            </div>
+            @include('partials._show-actions', [
+                'id' => $item->id,
+                'controllerName' => 'accreditedsamplingstatuses',
+                'page' => request()->input('page')
+                ])
 
         </div>
     </div>

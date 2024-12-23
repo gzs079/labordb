@@ -40,12 +40,11 @@
                 <!-- Rejtett mező az aktuális oldalszám számára -->
                 <input type="hidden" name="page" value="{{ request()->input('page', 1) }}">
 
-                <div class="form-group mt-3">
-                    <input type="submit" value="Mentés" class="btn btn-primary" />
-                    <a href="{{ route('humviresponsibles.index', ['page' => request()->input('page')]) }}" class="btn btn-secondary">
-                        Mégsem
-                    </a>
-                </div>
+                @include('partials._edit-actions', [
+                    'id' => $item->id,
+                    'controllerName' => 'humviresponsibles',
+                    'page' => request()->input('page')
+                    ])
 
             </div>
         </div>
