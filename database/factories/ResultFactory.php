@@ -35,9 +35,9 @@ class ResultFactory extends Factory
             'parameter_id' => Parameter::inRandomOrder()->first()->id,
             'unit_id' => Unit::inRandomOrder()->first()->id,
             'value' => $value,
-            'loq' => $this->loq($value),
-            'maxrange' => $this->maxrange($value),
-            'valueassigned' => $this->valueassigned($value),
+            'loq' => calculate_loq($value),
+            'maxrange' => calculate_maxrange($value),
+            'valueassigned' => calculate_valueassigned($value),
         ];
     }
 
@@ -81,44 +81,6 @@ class ResultFactory extends Factory
 
     }
 
-    private function loq($value) {
 
-        $value = str_replace(',','.',$value);
-
-        if (substr($value, 0, 1) === '<') {
-            return (float) substr($value, 1);
-        }
-        return null;
-    }
-
-    private function maxrange($value) {
-
-        $value = str_replace(',','.',$value);
-
-        if (substr($value, 0, 1) === '>') {
-            return (float) substr($value, 1);
-        }
-        return null;
-    }
-
-    private function valueassigned($value) {
-
-        $value = str_replace(',','.',$value);
-
-        if (substr($value, 0, 1) === '<') {
-            return (float) substr($value, 1)/2.;
-        }
-        elseif (substr($value, 0, 1) === '>') {
-            return (float) substr($value, 1);
-        }
-        else {
-            if (is_numeric($value)) {
-                return (float)$value;
-            }
-            else {
-                return null;
-            }
-        }
-    }
 
 }
