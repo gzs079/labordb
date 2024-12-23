@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('parameter_id')->constrained()->restrictOnDelete();
             $table->foreignId('unit_id')->constrained()->restrictOnDelete();
             $table->string('value', length:25);
-            $table->float('loq');
-            $table->float('maxrange');
-            $table->float('valueassigned');
+            $table->float('loq')->nullable();
+            $table->float('maxrange')->nullable();
+            $table->float('valueassigned')->nullable();
             $table->timestamps();
         });
     }
