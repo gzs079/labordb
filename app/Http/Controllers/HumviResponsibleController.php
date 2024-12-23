@@ -14,7 +14,7 @@ class HumviResponsibleController extends Controller
     public function index(Request $request)
     {
         $currentPage = $request->input('page', 1);
-        $items = Humviresponsible::paginate(env('PAGINATED_RECORDS'))->appends(['page' => $currentPage]);
+        $items = Humviresponsible::paginate(config('constants.PAGINATED_RECORDS'))->appends(['page' => $currentPage]);
         return view('humviresponsibles.index', compact('items'));
     }
 
@@ -53,7 +53,7 @@ class HumviResponsibleController extends Controller
         ]);
 
         $totalRecords = Humviresponsible::count();
-        $lastPage = ceil($totalRecords / env('PAGINATED_RECORDS'));
+        $lastPage = ceil($totalRecords / config('constants.PAGINATED_RECORDS'));
 
         return redirect()->route('humviresponsibles.index', ['page' => $lastPage])
             ->with('success', 'Rekord sikeresen létrehozva!');
@@ -122,7 +122,7 @@ class HumviResponsibleController extends Controller
 
         $humviresponsible->delete();
 
-        $items = Humviresponsible::paginate(env('PAGINATED_RECORDS'));
+        $items = Humviresponsible::paginate(config('constants.PAGINATED_RECORDS'));
 
         if ($currentPage > 1 && $items->count() == 0) {
             $currentPage--;  // Ha nincs rekord az oldalon, akkor visszalépünk az előző oldalra

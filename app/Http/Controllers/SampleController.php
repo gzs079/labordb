@@ -31,7 +31,7 @@ class SampleController extends Controller
         $samplingreasons = Samplingreason::all();
 
         $currentPage = $request->input('page', 1);
-        $items = Sample::paginate(env('PAGINATED_RECORDS'))->appends(['page' => $currentPage]);
+        $items = Sample::paginate(config('constants.PAGINATED_RECORDS'))->appends(['page' => $currentPage]);
         return view('samples.index', compact('items','humvimodules', 'humviresponsibles', 'samplingtypes', 'laboratories', 'samplingsites', 'samplers', 'accreditedsamplingstatuses', 'samplingreasons'));
     }
 
@@ -124,7 +124,7 @@ class SampleController extends Controller
         ]);
 
         $totalRecords = Sample::count();
-        $lastPage = ceil($totalRecords / env('PAGINATED_RECORDS'));
+        $lastPage = ceil($totalRecords / config('constants.PAGINATED_RECORDS'));
 
         return redirect()->route('samples.index', ['page' => $lastPage])
             ->with('success', 'Rekord sikeresen létrehozva!');
@@ -242,7 +242,7 @@ class SampleController extends Controller
 
         $sample->delete();
 
-        $items = Sample::paginate(env('PAGINATED_RECORDS'));
+        $items = Sample::paginate(config('constants.PAGINATED_RECORDS'));
 
         if ($currentPage > 1 && $items->count() == 0) {
             $currentPage--;  // Ha nincs rekord az oldalon, akkor visszalépünk az előző oldalra
