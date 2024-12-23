@@ -82,11 +82,13 @@
                         Új eredmény
                     </a>
 
-                    <form action="{{ route('results.destroy', $item, ['osszes' => 'igen', 'page' => $currentPage]) }}" method="POST" onsubmit="return confirm('Biztosan törölni szeretné?');" style="display:inline;">
+                    <form action="{{ count($results)>0 ? route('results.destroy', $results[0]) : ''}}" method="POST" onsubmit="return confirm('Biztosan törölni szeretné az összes eredményt?');" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="page" value="{{ $currentPage }}">
-                        <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" title="Összes eredmény törlése">
+                        <input type="hidden" name="deleteall" value="true">
+                        <input type="hidden" name="sample_id" value="{{$item->id}}">
+                        <button type="submit" class="btn btn-danger" data-bs-toggle="tooltip" title="Összes eredmény törlése" @if (count($results) === 0) disabled @endif >
                             Összes törlése
                         </button>
                     </form>

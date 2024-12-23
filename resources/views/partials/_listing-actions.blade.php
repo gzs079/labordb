@@ -7,15 +7,17 @@
     </a>
 
     <!-- Details Button -->
-    <a href="{{ route($controllerName . '.show', [ $id, 'page' => request()->input('page')]) }}" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Részletek">
-        <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-        </svg>
-    </a>
+    @if($controllerName != 'results')
+        <a href="{{ route($controllerName . '.show', [ $id, 'page' => request()->input('page')]) }}" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Részletek">
+            <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+            </svg>
+        </a>
+    @endif
 
     <!-- Delete Button -->
-    <form action="{{ route($controllerName . '.destroy', $id) }}" method="POST" onsubmit="return confirm('Biztosan törölni szeretnéd?');" style="display:inline;">
+    <form action="{{ route($controllerName . '.destroy', $id) }}" method="POST" onsubmit="return confirm('Biztosan törölni szeretné?');" style="display:inline;">
         @csrf
         @method('DELETE')
         <input type="hidden" name="page" value="{{ $page }}">
@@ -28,10 +30,12 @@
     </form>
 
     <!-- Create Button -->
-    <a href="{{ route($controllerName . '.create', [ 'page' => request()->input('page')]) }}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" title="Létrehozás">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-            <path d="M8 7V1a1 1 0 1 0-2 0v6H1a1 1 0 1 0 0 2h5v6a1 1 0 1 0 2 0V9h5a1 1 0 1 0 0-2H8z"/>
-        </svg>
-    </a>
+    @if($controllerName != 'results')
+        <a href="{{ route($controllerName . '.create', [ 'page' => request()->input('page')]) }}" class="btn btn-success btn-sm" data-bs-toggle="tooltip" title="Létrehozás">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <path d="M8 7V1a1 1 0 1 0-2 0v6H1a1 1 0 1 0 0 2h5v6a1 1 0 1 0 2 0V9h5a1 1 0 1 0 0-2H8z"/>
+            </svg>
+        </a>
+    @endif
 
 </div>

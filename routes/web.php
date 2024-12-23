@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('accreditedsamplingstatuses', \App\Http\Controllers\AccreditedSamplingStatusController::class);
 Route::resource('humviresponsibles', \App\Http\Controllers\HumviResponsibleController::class);
 Route::resource('samples', \App\Http\Controllers\SampleController::class);
+Route::resource('results', \App\Http\Controllers\ResultController::class);
 
 Route::get('/ivoviz-mintaveteli-pontok', function () {
     return view('ivoviz_mintaveteli_pontok');

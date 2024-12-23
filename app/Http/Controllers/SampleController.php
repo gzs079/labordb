@@ -11,6 +11,7 @@ use App\Models\Samplingsite;
 use Illuminate\Http\Request;
 use App\Models\Humvimodule;
 use App\Models\Humviresponsible;
+use App\Models\Result;
 use App\Models\Samplingtype;
 
 class SampleController extends Controller
@@ -145,9 +146,11 @@ class SampleController extends Controller
         $accreditedsamplingstatuses = Accreditedsamplingstatus::all();
         $samplingreasons = Samplingreason::all();
 
+        $results = Result::where('sample_id', $id)->get();
+
         $currentPage = $request->input('page', 1);
 
-        return view('samples.show', compact('item','currentPage', 'humvimodules', 'humviresponsibles', 'samplingtypes', 'laboratories', 'samplingsites', 'samplers', 'accreditedsamplingstatuses', 'samplingreasons'));
+        return view('samples.show', compact('item','results','currentPage', 'humvimodules', 'humviresponsibles', 'samplingtypes', 'laboratories', 'samplingsites', 'samplers', 'accreditedsamplingstatuses', 'samplingreasons'));
     }
 
     /**

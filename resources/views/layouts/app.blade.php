@@ -86,12 +86,7 @@
                 color: #333;
             }
             /*footer-top elem:*/
-            .alert-success {
-                justify-content: center;
-                align-items: center;
-                width: 100vw;
-            }
-            .alert-danger {
+            .alert-fullscreen {
                 justify-content: center;
                 align-items: center;
                 width: 100vw;
@@ -142,12 +137,12 @@
                 <div class="footer-top">
                     @yield('footer-top')
                     @if(session('success'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success alert-fullscreen">
                             {{ session('success') }}
                         </div>
                     @endif
                     @if(session('danger'))
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger alert-fullscreen">
                             {{ session('danger') }}
                         </div>
                     @endif
