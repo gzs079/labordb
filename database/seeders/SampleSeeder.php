@@ -14,7 +14,7 @@ class SampleSeeder extends Seeder
     public function run(): void
     {
         Sample::factory()
-            ->count(50)
+            ->count(350)
             ->create();
     }
 }
