@@ -29,8 +29,8 @@
                     <td>{{ $item->formatted_date_sampling }}</td>
                     <td>{{ $item->samplingreason->reason }}</td>
                     <td>{{ $item->samplingsite->name_full }}</td>
-                    <td>{{ $item->samplingsite->aquifer }}</td>
-                    <td>{{ $item->samplingsite->settlement }}</td>
+                    <td>{{ $item->samplingsite->aquifer->aquifer }}</td>
+                    <td>{{ $item->samplingsite->settlement->settlement }}</td>
                     <td>{{ $item->laboratory->name }}</td>
                     <td class="actioncol">
                         @include('partials._listing-actions', [
